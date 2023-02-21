@@ -13,6 +13,16 @@ export const theme = extendTheme({
   },
   fonts: {
     body: "Open Sans, sans-serif"
+  },
+  styles: {
+    global: () => ({
+        body: {
+            bg: "gray.200",
+        }
+    })
+  },
+  components: {
+
   }
 })
 
@@ -23,4 +33,6 @@ we then add export to enable us to use it on our app
 under the brand object is where we can change our theme 
 
 install fonts under chakra ui fonts
+
+
 */
