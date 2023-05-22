@@ -1,7 +1,8 @@
 import { authModalState } from '@/atoms/authModalAtom';
-import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter } from '@chakra-ui/react';
+import { Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Flex } from '@chakra-ui/react';
 import React from 'react';
 import { useRecoilState } from 'recoil';
+import AuthInputs from './AuthInputs';
 
 
 
@@ -21,10 +22,27 @@ const AuthModal:React.FC = () => {
         <Modal isOpen={modalState.open} onClose={handleClose}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Modal Title</ModalHeader>
+            <ModalHeader textAlign="center">
+              {modalState.view === "login" && "Login"}
+              {modalState.view === "signup" && "Sign up"}
+              {modalState.view === "resetPassword" && "Reset Password"}
+            </ModalHeader>
             <ModalCloseButton />
-            <ModalBody>
-              Here is the Modal Body
+            <ModalBody 
+              display="flex" 
+              flexDirection="column" 
+              alignItems="center" 
+              justifyContent="center"
+              pb={6}
+              >
+              <Flex 
+                direction="column" 
+                align="center" 
+                justify="center"
+                width="70%"
+                >
+                  <AuthInputs />
+                </Flex>
             </ModalBody>
           </ModalContent>
         </Modal>
@@ -36,7 +54,7 @@ export default AuthModal;
 /*
 This is all I have to do to set up global state
 const [modalState, setModalState] = useRecoilState(authModalState) 
-modalState => state value setModalState => state function
+modalState => state value || setModalState => state function
 useRecoilState(authModalState) => makes it global
 
 In isOpen={on.Open} im going to change it to now isOpen={modalState.open} bcz 
@@ -44,4 +62,6 @@ im now using whats on my interface {open} to be specific
 
 Were going to spread (...prev,) it bcz we only want to modify a single part of that 
 piece of state and that piece is going to set it to false
+
+{modalState.view === "login" && "Login"} -> if its equal to login show the text Login
 */

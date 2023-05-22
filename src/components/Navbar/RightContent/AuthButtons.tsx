@@ -35,4 +35,11 @@ export default AuthButtons;
 /*
 when I click the modal view it is going to show login -> onClick={() => setAuthModalState({ open: true, view: "login"})}
 when I click the modal view it is going to show signuo -> onClick={() => setAuthModalState({ open: true, view: "signup"})}
+
+Whenever were only using the setAuthModalState functionality dont forget to add this 1st
+const [_, setAuthModalState] = useRecoilState(authModalState);
+
+The underscore (_) is a plain valid character for variable/function name, it does not bring
+any additional feature. However, it is a good convention to use underscore to mark variable/function
+as private.
 */
