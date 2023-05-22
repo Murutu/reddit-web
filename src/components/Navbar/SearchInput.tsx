@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 import { SearchIcon } from '@chakra-ui/icons';
 import { Flex, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import React from 'react';
@@ -40,6 +41,6 @@ const SearchInput:React.FC<SearchInputProps> = () => {
 export default SearchInput;
 
 /*
-Tip => ctrl + shift + p organizes all your unused imports 
+Tip => ctrl + shift + p organizes or gets rid all your unused imports 
 _placeholder enables us to access sudo classes using the _ underscore
 */

@@ -13,5 +13,5 @@ const Layout:React.FC = ({ children }) => {
 export default Layout;
 
 /*
-Nextjs layout will enable us to create a layout
+Nextjs layout will enable us to create a layout for our project
 */

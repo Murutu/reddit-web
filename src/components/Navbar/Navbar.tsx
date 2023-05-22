@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { Flex, Image } from "@chakra-ui/react";
 import React from 'react';
 import RightContent from "./RightContent/RightContent";
@@ -28,4 +29,7 @@ Chakra UI saves us alot of time writing out flexbox Styles over & over again
 <Flex>
     navbar
 </Flex>
+
+base => This represents mobile screen sizes bcz Chakra is a mobile 1st UI library
+md: "unset" => Is the opposite of display none.
 */
