@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+
 import { Button, Flex, Input, Text } from '@chakra-ui/react';
+
 import { authModalState } from '@/atoms/authModalAtom';
 import { useRecoilState } from 'recoil';
+
+import { auth } from "../../../firebase/clientApp";
 
 type SignUpProps = {
     
@@ -16,7 +21,36 @@ const SignUp:React.FC<SignUpProps> = () => {
         confirmPassword: ""
     });
 
-    const onSubmit = () => {};
+    const [error, setError] = useState("");
+
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        userError,
+    ] = useCreateUserWithEmailAndPassword(auth);
+
+    /* 
+    Firebase Logic
+    We do return to make sure the function has been executed first before proceeding to the next one
+            {error && (
+            <Text textAlign="center" color="red" fontSize="10pt">{error}</Text>
+        )} => Don't display error message text unless the error exists
+
+        Type of event(event:React.FormEvent) & type of html element that is producing the React.FormEvent is <HTMLFormElement>
+    */
+    const onSubmit = (event:React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        if(error) setError("");
+        if(signUpForm.password !== signUpForm.confirmPassword) {
+            setError(" Passwords do not match ");
+            return;
+        }
+
+        // password match
+        createUserWithEmailAndPassword(signUpForm.email, signUpForm.password);
+    };
 
     const onChange = (event:React.ChangeEvent<HTMLImageElement>) => {
         // update state form
@@ -93,10 +127,13 @@ const SignUp:React.FC<SignUpProps> = () => {
             }}
             bg="gray.50"
         />
-
+        {error && (
+            <Text textAlign="center" color="red" fontSize="10pt">{error}</Text>
+        )}
         <Button
             width="100%"  
             type="submit"
+            isLoading={loading}
             mt={2}
             mb={2}
         >
